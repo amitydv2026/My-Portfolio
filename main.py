@@ -11,7 +11,26 @@ app = FastAPI(title="Amit Yadav Portfolio")
 
 # ── Database setup ─────────────────────────────────────────────────────────────
 
-# On Render, use the persistent disk at /data; fall back to local for dev
+# ── Resume config — auto-detects any PDF in static/resume/ ───────────────────
+RESUME_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "resume")
+
+def get_resume_file():
+    """Return the first PDF found in static/resume/, or None."""
+    print(f"[resume] Looking in: {RESUME_DIR}")
+    if not os.path.isdir(RESUME_DIR):
+        print(f"[resume] Directory does not exist: {RESUME_DIR}")
+        return None, None
+    files = os.listdir(RESUME_DIR)
+    print(f"[resume] Files found: {files}")
+    for f in files:
+        if f.lower().endswith(".pdf"):
+            full_path = os.path.join(RESUME_DIR, f)
+            print(f"[resume] Serving: {full_path}")
+            return full_path, f
+    print("[resume] No PDF found.")
+    return None, None
+
+
 DB_PATH = os.path.join(os.getenv("DB_DIR", os.path.dirname(__file__)), "portfolio.db")
 
 def get_db():
@@ -185,7 +204,19 @@ async def contact(msg: ContactMessage):
     return {"success": True, "message": f"Thanks {msg.name}! Your message has been received. I'll get back to you soon."}
 
 
-@app.get("/api/messages")
+@app.get("/resume")
+async def download_resume():
+    """Serve whatever PDF is in static/resume/ for download."""
+    path, filename = get_resume_file()
+    if not path:
+        raise HTTPException(status_code=404, detail="Resume not found.")
+    return FileResponse(
+        path,
+        media_type="application/pdf",
+        filename=filename
+    )
+
+
 async def get_messages():
     """Retrieve all stored contact messages (admin use)."""
     conn = get_db()
