@@ -7,7 +7,7 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: ALLOWED_ORIGINS
-        value: https://amit-yadav-portfolio.onrender.com
+        value: https://my-portfolio-opus.onrender.com
       - key: DB_DIR
         value: /data
     disk:
