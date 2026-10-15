@@ -359,10 +359,8 @@ form.addEventListener("submit", async (e) => {
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // ── Download CV ───────────────────────────────────────────────────────────────
-document.getElementById("download-resume")?.addEventListener("click", (e) => {
-  e.preventDefault();
-  alert("CV download coming soon! Reach me at ydvamit.me@gmail.com");
-});
+// The anchor href="/resume" in index.html handles the download directly.
+// No JS override needed — FastAPI serves whatever PDF is in static/resume/.
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 initFloatingLabels();
