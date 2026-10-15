@@ -196,7 +196,22 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   background: rgba(99,102,241,.1);
   transform: translateY(-2px);
 }
-.btn-full { width: 100%; justify-content: center; }
+.btn-cv {
+  background: linear-gradient(135deg, var(--clr-accent2), var(--clr-accent));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(244, 114, 182, 0.45);
+  animation: pulse-cv 2.5s ease-in-out infinite;
+}
+.btn-cv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(244, 114, 182, 0.65);
+}
+@keyframes pulse-cv {
+  0%, 100% { box-shadow: 0 4px 20px rgba(244,114,182,.45); }
+  50%       { box-shadow: 0 4px 32px rgba(244,114,182,.8), 0 0 0 6px rgba(244,114,182,.12); }
+}
+
+
 
 /* ── Navbar ─────────────────────────────────────────── */
 .navbar {
