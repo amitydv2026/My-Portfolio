@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amit Yadav | Full Stack Developer</title>
+  <meta name="description" content="Portfolio of Amit Yadav – Full Stack Developer skilled in FastAPI, Python, JavaScript, and more." />
+  <!-- Relative paths — works for both Live Server and FastAPI -->
+  <link rel="stylesheet" href="static/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ── Loader ── -->
+  <div class="loader" id="loader">
+    <div class="loader-ring"></div>
+    <p class="loader-text">Loading<span class="dots">...</span></p>
+  </div>
+
+  <!-- ── Cursor ── -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" href="#home">
+        <span class="logo-bracket">&lt;</span>AY<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home"       class="nav-link active">Home</a></li>
+        <li><a href="#about"      class="nav-link">About</a></li>
+        <li><a href="#skills"     class="nav-link">Skills</a></li>
+        <li><a href="#projects"   class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact"    class="nav-link">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <canvas id="particles-canvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <p class="hero-greeting">👋 Hello, I'm</p>
+      <h1 class="hero-name">
+        <span class="name-first">Amit</span>
+        <span class="name-last">Yadav</span>
+      </h1>
+      <div class="hero-role">
+        <span class="role-prefix">I'm a </span>
+        <span class="role-typed" id="typed-text"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-tagline">Building scalable web apps &amp; APIs that make a difference.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-rocket"></i> View My Work
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <i class="fas fa-paper-plane"></i> Get In Touch
+        </a>
+      </div>
+      <div class="hero-socials">
+        <a href="mailto:ydvamit.me@gmail.com" aria-label="Email" class="social-icon">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="tel:+917724949303" aria-label="Phone" class="social-icon">
+          <i class="fas fa-phone"></i>
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get To Know Me</span>
+        <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-wrapper">
+          <div class="about-image-card">
+            <div class="avatar-placeholder">
+              <span class="avatar-initials">AY</span>
+              <div class="avatar-ring ring-1"></div>
+              <div class="avatar-ring ring-2"></div>
+              <div class="avatar-ring ring-3"></div>
+            </div>
+            <div class="about-badge badge-1"><i class="fas fa-code"></i> Full Stack</div>
+            <div class="about-badge badge-2"><i class="fas fa-shield-alt"></i> Security</div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3 class="about-subtitle">Full Stack Developer &amp; Cyber Security Enthusiast</h3>
+          <p class="about-description">
+            I'm a dedicated Full Stack Developer from Itarsi, MP, passionate about crafting
+            clean, efficient, and scalable software solutions. With hands-on experience in
+            <strong>FastAPI</strong>, <strong>Python</strong>, <strong>JavaScript</strong>,
+            and modern databases, I turn complex problems into elegant digital experiences.
+          </p>
+          <p class="about-description">
+            Currently completing a Software Development program at Masai School (Bengaluru)
+            and holding a B.Tech from RGPV, I bring both academic depth and hands-on project
+            experience with <strong>AI-powered apps</strong>, <strong>REST APIs</strong>,
+            and <strong>cybersecurity</strong> to every challenge.
+          </p>
+          <div class="about-info-grid">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <span class="info-label">Location</span>
+                <span class="info-value">Itarsi, MP, India</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-graduation-cap"></i>
+              <div>
+                <span class="info-label">Education</span>
+                <span class="info-value">B.Tech (RGPV)</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-briefcase"></i>
+              <div>
+                <span class="info-label">Experience</span>
+                <span class="info-value">2 Internships</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <span class="info-label">Email</span>
+                <span class="info-value">ydvamit.me@gmail.com</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-actions">
+            <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Hire Me</a>
+            <a href="#" class="btn btn-outline" id="download-resume"><i class="fas fa-download"></i> Download CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title">My <span class="highlight">Skills</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid" id="skills-grid"><!-- Populated by JS --></div>
+      <div class="soft-skills">
+        <h3 class="soft-skills-title">Soft Skills</h3>
+        <div class="soft-skills-list">
+          <span class="soft-skill-pill"><i class="fas fa-lightbulb"></i> Problem-solving</span>
+          <span class="soft-skill-pill"><i class="fas fa-sync-alt"></i> Adaptability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What I've Built</span>
+        <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid" id="projects-grid"><!-- Populated by JS --></div>
+    </div>
+  </section>
+
+  <!-- ── Experience & Education ── -->
+  <section class="section experience" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">My Journey</span>
+        <h2 class="section-title">Experience &amp; <span class="highlight">Education</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="timeline-wrapper">
+        <div class="timeline-col">
+          <h3 class="timeline-col-title"><i class="fas fa-briefcase"></i> Work Experience</h3>
+          <div class="timeline" id="experience-timeline"><!-- Populated by JS --></div>
+        </div>
+        <div class="timeline-col">
+          <h3 class="timeline-col-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+          <div class="timeline" id="education-timeline"><!-- Populated by JS --></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Let's Talk</span>
+        <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3 class="contact-info-title">Let's work together!</h3>
+          <p class="contact-info-text">
+            I'm currently open to freelance projects, internships, and full-time opportunities.
+            Whether you have a project in mind or just want to say hi, feel free to reach out!
+          </p>
+          <div class="contact-details">
+            <a href="mailto:ydvamit.me@gmail.com" class="contact-detail-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <span class="contact-detail-label">Email</span>
+                <span class="contact-detail-value">ydvamit.me@gmail.com</span>
+              </div>
+            </a>
+            <a href="tel:+917724949303" class="contact-detail-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <span class="contact-detail-label">Phone</span>
+                <span class="contact-detail-value">+91 7724949303</span>
+              </div>
+            </a>
+            <div class="contact-detail-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <span class="contact-detail-label">Location</span>
+                <span class="contact-detail-value">Itarsi, MP, India</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="mailto:ydvamit.me@gmail.com" aria-label="Email" class="social-icon"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <div class="float-group">
+                  <input type="text" id="name" name="name" required autocomplete="name" />
+                  <label for="name"><i class="fas fa-user"></i> Your Name</label>
+                </div>
+                <span class="field-error" id="name-error"></span>
+              </div>
+              <div class="form-group">
+                <div class="float-group">
+                  <input type="email" id="email" name="email" required autocomplete="email" />
+                  <label for="email"><i class="fas fa-envelope"></i> Your Email</label>
+                </div>
+                <span class="field-error" id="email-error"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="float-group">
+                <input type="text" id="subject" name="subject" />
+                <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="float-group">
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="message"><i class="fas fa-comment-dots"></i> Your Message</label>
+              </div>
+              <span class="field-error" id="message-error"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+              <span class="btn-text"><i class="fas fa-paper-plane"></i> Send Message</span>
+              <span class="btn-loading" hidden><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+            </button>
+            <div class="form-success" id="form-success" hidden>
+              <i class="fas fa-check-circle"></i>
+              <span id="success-message"></span>
+            </div>
+            <div class="form-error-msg" id="form-error" hidden>
+              <i class="fas fa-exclamation-circle"></i>
+              <span id="error-message"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a class="footer-logo" href="#home">
+          <span class="logo-bracket">&lt;</span>AY<span class="logo-bracket">/&gt;</span>
+        </a>
+        <p class="footer-text">Designed &amp; Built by <strong>Amit Yadav</strong> · FastAPI + HTML/CSS/JS</p>
+        <p class="footer-copy">© <span id="year"></span> Amit Yadav. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>

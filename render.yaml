@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: amit-yadav-portfolio
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://amit-yadav-portfolio.onrender.com
+      - key: DB_DIR
+        value: /data
+    disk:
+      name: portfolio-db
+      mountPath: /data
+      sizeGB: 1
