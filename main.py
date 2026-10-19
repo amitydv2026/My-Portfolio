@@ -58,7 +58,7 @@ init_db()
 # CORS — explicit origins allow credentials to be used safely
 ALLOWED_ORIGINS = os.getenv(
     "ALLOWED_ORIGINS",
-    "http://localhost:5500,http://127.0.0.1:5500,http://localhost:8000,http://127.0.0.1:8000"
+    "http://localhost:5500,http://127.0.0.1:5500,http://localhost:8000,http://127.0.0.1:8000,https://my-portfolio-opus.onrender.com"
 ).split(",")
 
 app.add_middleware(

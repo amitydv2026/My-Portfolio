@@ -1,13 +1,20 @@
 /* ═══════════════════════════════════════════════════════
    AMIT YADAV PORTFOLIO — script.js
+   Pure frontend — works on GitHub Pages with no backend.
+   Contact form uses Formspree. Resume is a direct PDF link.
    ═══════════════════════════════════════════════════════ */
 
 "use strict";
 
-// ── API base — works from both Live Server (:5500) and FastAPI (:8000) ────────
-const API_BASE = window.location.port === "5500"
+// ── Backend URL — only used for contact form ──────────────────────────────────
+// On GitHub Pages, point to your Render backend.
+// Locally, points to FastAPI on port 8000.
+const BACKEND_URL = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
   ? "http://127.0.0.1:8000"
-  : "";
+  : "https://my-portfolio-opus.onrender.com";
+
+// ── Resume — direct link to PDF (relative, works on GitHub Pages) ─────────────
+const RESUME_URL = "static/resume/AMIT_YADAV_FlowCV_Resume_2026-10-15.pdf";
 
 // ── Loader ────────────────────────────────────────────────────────────────────
 window.addEventListener("load", () => {
@@ -178,23 +185,90 @@ function addReveal(selector, delay = 0) {
   });
 }
 
-// ── Fetch Portfolio Data & Render ─────────────────────────────────────────────
-async function loadPortfolio() {
-  try {
-    const res = await fetch(`${API_BASE}/api/portfolio`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    renderSkills(data.skills);
-    renderProjects(data.projects);
-    renderExperience(data.experience);
-    renderEducation(data.education);
-    addReveal(".skill-card", 0.07);
-    addReveal(".project-card", 0.1);
-    addReveal(".timeline-item", 0.1);
-    addReveal(".about-grid, .contact-grid", 0);
-  } catch (err) {
-    console.error("Failed to load portfolio data:", err);
-  }
+// ── Portfolio Data (hardcoded — no backend needed) ────────────────────────────
+const PORTFOLIO_DATA = {
+  skills: {
+    Languages:     ["Python", "JavaScript", "C++"],
+    Database:      ["SQL", "Supabase"],
+    Backend:       ["FastAPI", "REST APIs", "JWT Authentication", "CRUD Operations"],
+    Frontend:      ["HTML", "CSS", "Tailwind CSS"],
+    Tools:         ["Git", "GitHub"],
+    Cybersecurity: ["Ethical Hacking"],
+  },
+  projects: [
+    {
+      name: "Zomato Notes",
+      icon: "📝",
+      description:
+        "A full-stack internal notes and knowledge base application for on-call support engineers using HTML, CSS, JavaScript, FastAPI, and Supabase.",
+      highlights: [
+        "Built REST APIs using FastAPI to create, update, retrieve, and delete (CRUD) incident notes.",
+        "Structured and maintained the database to securely organize notes, tags, and related information for efficient retrieval.",
+        "Enabled fast note discovery through keyword search and tag-based filtering during live incidents.",
+        "Added lightweight AI-assisted note classification and retrieval to improve productivity.",
+      ],
+      tech: ["FastAPI", "Supabase", "HTML", "CSS", "JavaScript", "AI"],
+      github: "#",
+      demo: "#",
+    },
+    {
+      name: "MY_LLM",
+      icon: "🤖",
+      description:
+        "A full-stack AI-powered chat and content generation web application using HTML, CSS, JavaScript, FastAPI, and SQL database.",
+      highlights: [
+        "Built secure user authentication and account management for sign-up, login, and personalized access.",
+        "Implemented multi-turn AI conversations with persistent conversation context.",
+        "Added AI-powered image generation from text descriptions.",
+        "Designed and maintained backend APIs for AI requests, user data, and content generation.",
+      ],
+      tech: ["FastAPI", "SQL", "HTML", "CSS", "JavaScript", "AI", "JWT"],
+      github: "#",
+      demo: "#",
+    },
+  ],
+  experience: [
+    {
+      company:     "INTERNSELITE",
+      role:        "Cyber Security Intern",
+      period:      "06/25 – 08/25",
+      location:    "Remote",
+      description: "Worked on ethical hacking, vulnerability assessment, and cybersecurity best practices.",
+    },
+    {
+      company:     "InternPe",
+      role:        "Web Development Intern",
+      period:      "03/24 – 07/24",
+      location:    "Remote",
+      description: "Developed web interfaces and gained hands-on experience in frontend technologies.",
+    },
+  ],
+  education: [
+    {
+      degree:      "Software Development",
+      institution: "Masai School",
+      period:      "03/2026 – 07/2026",
+      location:    "Bengaluru (Remote)",
+    },
+    {
+      degree:      "B.Tech",
+      institution: "Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)",
+      period:      "11/2022 – 04/2026",
+      location:    "Bhopal",
+    },
+  ],
+};
+
+// ── Render all sections instantly ─────────────────────────────────────────────
+function loadPortfolio() {
+  renderSkills(PORTFOLIO_DATA.skills);
+  renderProjects(PORTFOLIO_DATA.projects);
+  renderExperience(PORTFOLIO_DATA.experience);
+  renderEducation(PORTFOLIO_DATA.education);
+  addReveal(".skill-card", 0.07);
+  addReveal(".project-card", 0.1);
+  addReveal(".timeline-item", 0.1);
+  addReveal(".about-grid, .contact-grid", 0);
 }
 
 const skillIcons = {
@@ -224,8 +298,8 @@ function renderProjects(projects) {
       <div class="project-header">
         <span class="project-icon">${p.icon}</span>
         <div class="project-links">
-          <a href="#" class="project-link" aria-label="Source Code" title="Source Code"><i class="fab fa-github"></i></a>
-          <a href="#" class="project-link" aria-label="Live Demo" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+          <a href="${p.github}" class="project-link" aria-label="Source Code" title="Source Code"><i class="fab fa-github"></i></a>
+          <a href="${p.demo}" class="project-link" aria-label="Live Demo" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
       <h3 class="project-name">${p.name}</h3>
@@ -278,7 +352,7 @@ function initFloatingLabels() {
   });
 }
 
-// ── Contact Form ──────────────────────────────────────────────────────────────
+// ── Contact Form — Formspree (no backend needed) ──────────────────────────────
 const form        = document.getElementById("contact-form");
 const submitBtn   = document.getElementById("submit-btn");
 const btnText     = submitBtn.querySelector(".btn-text");
@@ -308,9 +382,9 @@ form.addEventListener("submit", async (e) => {
   formError.hidden   = true;
 
   const ok =
-    validateField("name",    "name-error",    v => v.trim().length >= 2,                          "At least 2 characters required.") &
-    validateField("email",   "email-error",   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),  "Enter a valid email address.") &
-    validateField("message", "message-error", v => v.trim().length >= 10,                         "At least 10 characters required.");
+    validateField("name",    "name-error",    v => v.trim().length >= 2,                         "At least 2 characters required.") &
+    validateField("email",   "email-error",   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), "Enter a valid email address.") &
+    validateField("message", "message-error", v => v.trim().length >= 10,                        "At least 10 characters required.");
   if (!ok) return;
 
   btnText.hidden = true; btnLoading.hidden = false; submitBtn.disabled = true;
@@ -323,10 +397,10 @@ form.addEventListener("submit", async (e) => {
   };
 
   try {
-    const res  = await fetch(`${API_BASE}/api/contact`, {
-      method: "POST",
+    const res  = await fetch(`${BACKEND_URL}/api/contact`, {
+      method:  "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body:    JSON.stringify(payload),
     });
     const data = await res.json();
     if (res.ok && data.success) {
@@ -358,9 +432,14 @@ form.addEventListener("submit", async (e) => {
 // ── Year ──────────────────────────────────────────────────────────────────────
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// ── Download CV ───────────────────────────────────────────────────────────────
-// The anchor href="/resume" in index.html handles the download directly.
-// No JS override needed — FastAPI serves whatever PDF is in static/resume/.
+// ── Download CV — direct PDF link, no backend ─────────────────────────────────
+document.getElementById("download-resume")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  const a = document.createElement("a");
+  a.href     = RESUME_URL;
+  a.download = RESUME_URL.split("/").pop();
+  a.click();
+});
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 initFloatingLabels();
