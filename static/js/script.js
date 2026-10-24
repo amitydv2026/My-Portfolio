@@ -14,7 +14,7 @@ const BACKEND_URL = window.location.hostname === "127.0.0.1" || window.location.
   : "https://my-portfolio-opus.onrender.com";
 
 // ── Resume — direct link to PDF (relative, works on GitHub Pages) ─────────────
-const RESUME_URL = "static/resume/AMIT_YADAV_FlowCV_Resume_2026-10-15.pdf";
+const RESUME_URL = "static/resume/Amit-Yadav-Resume.pdf";
 
 // ── Loader ────────────────────────────────────────────────────────────────────
 window.addEventListener("load", () => {
@@ -100,11 +100,11 @@ backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "s
 
 // ── Typed Text ────────────────────────────────────────────────────────────────
 const roles = [
-  "Full Stack Developer",
+  "Backend Developer",
   "FastAPI Expert",
   "Python Developer",
   "REST API Builder",
-  "Cyber Security Enthusiast",
+  "AI Integration Engineer",
 ];
 let roleIdx = 0, charIdx = 0, isDeleting = false;
 const typedEl = document.getElementById("typed-text");
@@ -188,26 +188,27 @@ function addReveal(selector, delay = 0) {
 // ── Portfolio Data (hardcoded — no backend needed) ────────────────────────────
 const PORTFOLIO_DATA = {
   skills: {
-    Languages:     ["Python", "JavaScript", "C++"],
-    Database:      ["SQL", "Supabase"],
-    Backend:       ["FastAPI", "REST APIs", "JWT Authentication", "CRUD Operations"],
-    Frontend:      ["HTML", "CSS", "Tailwind CSS"],
-    Tools:         ["Git", "GitHub"],
-    Cybersecurity: ["Ethical Hacking"],
+    "Languages & DSA": ["Python", "JavaScript", "SQL", "Arrays", "Binary Search", "Sorting"],
+    "Backend":         ["FastAPI", "REST APIs", "SQLAlchemy ORM", "JWT Authentication", "Owner-Based Authorization", "Pydantic Validation", "Middleware", "Error Handling"],
+    "Frontend":        ["HTML5", "CSS3", "Vanilla JavaScript", "DOM Manipulation", "Async Fetch API", "LocalStorage", "Responsive UI"],
+    "Databases":       ["PostgreSQL (Supabase)", "Relational Schema Design", "Normalization", "Indexing", "Foreign Keys"],
+    "AI":              ["Groq API Integration", "Semantic Search", "Sentence Transformers", "AI Summarization"],
+    "DevOps & Testing":["Pytest", "GitHub Actions (CI/CD)", "Docker", "Postman", "Swagger UI", "Render", "GitHub Pages"],
   },
   projects: [
     {
       name: "Zomato Notes",
       icon: "📝",
       description:
-        "A full-stack internal notes and knowledge base application for on-call support engineers using HTML, CSS, JavaScript, FastAPI, and Supabase.",
+        "Internal knowledge base for on-call support engineers — JWT-protected CRUD APIs, keyword search, tag filtering, and AI summarization over an indexed Supabase (PostgreSQL) schema. Typical endpoints respond in 3–9 ms.",
       highlights: [
-        "Built REST APIs using FastAPI to create, update, retrieve, and delete (CRUD) incident notes.",
-        "Structured and maintained the database to securely organize notes, tags, and related information for efficient retrieval.",
-        "Enabled fast note discovery through keyword search and tag-based filtering during live incidents.",
-        "Added lightweight AI-assisted note classification and retrieval to improve productivity.",
+        "JWT-protected CRUD APIs with keyword search and tag filtering; typical endpoints respond in 3–9 ms.",
+        "Owner-based authorization: editing/deleting a note requires a matching x-user-id + token; verified with 401/403/200 tests.",
+        "36 pytest integration tests; GitHub Actions runs them on every push/PR to gate Render deploys.",
+        "Semantic search with sentence-transformers and cosine similarity; lazy-loaded model for 4.6 s startup and ~385 ms warm queries.",
+        "Groq API integration to generate note content, suggest tags from titles, and summarize notes.",
       ],
-      tech: ["FastAPI", "Supabase", "HTML", "CSS", "JavaScript", "AI"],
+      tech: ["FastAPI", "PostgreSQL", "SQLAlchemy", "JWT", "Groq API", "Pytest", "GitHub Actions", "Render"],
       github: "#",
       demo: "#",
     },
@@ -215,40 +216,47 @@ const PORTFOLIO_DATA = {
       name: "MY_LLM",
       icon: "🤖",
       description:
-        "A full-stack AI-powered chat and content generation web application using HTML, CSS, JavaScript, FastAPI, and SQL database.",
+        "AI chat assistant built with FastAPI and JavaScript, storing messages and conversation IDs in Supabase (PostgreSQL) for persistent history. Responses streamed via Server-Sent Events.",
       highlights: [
-        "Built secure user authentication and account management for sign-up, login, and personalized access.",
-        "Implemented multi-turn AI conversations with persistent conversation context.",
-        "Added AI-powered image generation from text descriptions.",
-        "Designed and maintained backend APIs for AI requests, user data, and content generation.",
+        "Groq API called server-side through FastAPI; responses streamed to the frontend using Server-Sent Events (SSE).",
+        "Persistent conversation history stored in Supabase (PostgreSQL) with conversation IDs.",
+        "Pydantic request validation; API tested with Postman and Swagger UI.",
+        "Automatic deployments from GitHub to GitHub Pages (frontend) and Render (backend) on every push.",
       ],
-      tech: ["FastAPI", "SQL", "HTML", "CSS", "JavaScript", "AI", "JWT"],
+      tech: ["FastAPI", "PostgreSQL", "Groq API", "SSE", "JavaScript", "Pydantic", "GitHub Actions"],
+      github: "#",
+      demo: "#",
+    },
+    {
+      name: "LinkSnap",
+      icon: "🔗",
+      description:
+        "URL shortener that converts long URLs into short links and records every click with a timestamp. Dockerised with docker-compose and deployed on Render with Supabase.",
+      highlights: [
+        "Atomic click recording — INSERT + counter UPDATE in one transaction; rollback verified with a monkeypatched pytest failure (18 tests passing).",
+        "Dockerised with docker-compose (API + PostgreSQL); CI via GitHub Actions; deployed on Render with Supabase.",
+        "Feature-branch Git workflow: frontend built on a separate branch and merged via GitHub pull request.",
+      ],
+      tech: ["FastAPI", "PostgreSQL", "Docker", "GitHub Actions", "Render", "JavaScript"],
       github: "#",
       demo: "#",
     },
   ],
   experience: [
     {
-      company:     "INTERNSELITE",
-      role:        "Cyber Security Intern",
-      period:      "06/25 – 08/25",
-      location:    "Remote",
-      description: "Worked on ethical hacking, vulnerability assessment, and cybersecurity best practices.",
-    },
-    {
       company:     "InternPe",
       role:        "Web Development Intern",
-      period:      "03/24 – 07/24",
+      period:      "03/2024 – 07/2024",
       location:    "Remote",
-      description: "Developed web interfaces and gained hands-on experience in frontend technologies.",
+      description: "Built a responsive e-commerce website (HTML, CSS, JS) backed by a FastAPI REST API and PostgreSQL database. Implemented shopping-cart functionality with quantity updates and automatic total-price recalculation.",
     },
   ],
   education: [
     {
-      degree:      "Software Development",
+      degree:      "Software Development & Applied AI",
       institution: "Masai School",
       period:      "03/2026 – 07/2026",
-      location:    "Bengaluru (Remote)",
+      location:    "Remote",
     },
     {
       degree:      "B.Tech",
@@ -272,8 +280,12 @@ function loadPortfolio() {
 }
 
 const skillIcons = {
-  Languages: "fas fa-code", Database: "fas fa-database", Backend: "fas fa-server",
-  Frontend: "fas fa-laptop-code", Tools: "fas fa-tools", Cybersecurity: "fas fa-shield-alt",
+  "Languages & DSA": "fas fa-code",
+  "Backend":         "fas fa-server",
+  "Frontend":        "fas fa-laptop-code",
+  "Databases":       "fas fa-database",
+  "AI":              "fas fa-brain",
+  "DevOps & Testing":"fas fa-tools",
 };
 
 function renderSkills(skills) {
